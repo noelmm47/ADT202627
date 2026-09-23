@@ -19,7 +19,7 @@ public class Ejercicio1 {
 		//verDirectorio("."); //Directorio actual
 	}
 	
-	private static void verDirectorio(String dir) {
+	/*private static void verDirectorio(String dir) {
 		//String dir = "C:\\Usuarios\\Tarde\\Datos";
 		jerLv+=1;
 		if(jerLv>=10) {
@@ -45,6 +45,35 @@ public class Ejercicio1 {
 		}
 		
 		jerLv-=1;
-	}
+	}*/
 
+	private static void verDirectorio(String dir) {
+		//String dir = "C:\\Usuarios\\Tarde\\Datos";
+		jerLv+=1;
+		if(jerLv>=10) {
+			System.err.println("Demasiadas carpetas");
+			System.exit(-1);
+		}
+		
+		File[] files= new File(dir).listFiles();
+		if(files!=null)
+			for(File f: files) {
+				for(int i=0; i<jerLv; i++)
+					System.out.print("\t");
+				
+				System.out.printf("* %s ///// ", f.getAbsolutePath());
+				System.out.printf("Directorio?: %s; Fichero?: %s\n",
+									f.isDirectory() ? "Y":"N",
+									f.isFile() ? "Y":"N");
+				
+				if(f.isDirectory())
+					verDirectorio(f.getAbsolutePath());
+			}
+		/*else {
+			File fff= new File(dir);
+			System.err.println("\n." + fff.getName() + " /// " + fff.list() + " /// " + fff.canWrite());
+		} //Por algún motivo devuelve null al listar los archivos dentro de la carpeta Program Files */
+		
+		jerLv-=1;
+	}
 }
