@@ -3,57 +3,44 @@ package unidad1;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Propuesta1 {
 
-	/* Método que compruebe la existencia de un archivo, creándolo si no existe, y 
-	 * listando su contenido de ser un directorio */
-	
+	/* Comprobar la existencia de una ruta; si no existe, crear el fichero.
+	 * Si existe, imprimir por pantalla si es directorio o fichero y su tamaño.
+	 */
 	public static void main(String[] args) {
-		mirarArchivo(args[0]);
-	}
-	
-	private static void mirarArchivo(String ruta) {
-		//Comprobar si existe
-		Path p= Paths.get(ruta);
-		
+		Path path = Paths.get("C:/Users/noelg/Documents/Borrar/t.txt"); //TODO Me da problemas la ruta
 		try {
-			if(Files.exists(p)) {
-				System.out.printf("El archivo existe.");
-				if(Files.isRegularFile(p))
-					System.out.printf("Tamaño en bytes: %d\n", Files.size(p));
-			}else
-				crearArchivo(p);
-			
-			//Listar
-			if(Files.isDirectory(p))
-				listarDirectorio(p);
-			
+			comprobar(path);
+			recorrer(path);
+		}catch(NotDirectoryException e) {
+			System.err.println("La ruta pasada no es de un directorio");
 		}catch(IOException e) {
-			System.err.printf("Ha ocurrido un error: %s", e.getMessage());
+			System.err.println("Hubo un problema de E/S: " + e.getLocalizedMessage());
 		}
 	}
-
-	private static void crearArchivo(Path p) throws IOException {
-		System.out.println("El archivo no existe.\nCreando.....");
-		Files.createFile(p);
-		System.out.println("¡Archivo creado con éxito!");
+	
+	private static void comprobar(Path ruta) throws IOException{
+		if(Files.exists(ruta)) {
+			System.out.println("EXISTE");
+		}else {
+			System.out.println("NO EXISTE\nCREANDO.......");
+			Files.createFile(ruta);
+			System.out.println("CREADO CON ÉXITO");
+		}
 	}
 	
-	private static void listarDirectorio(Path p) throws IOException {
-		if(!Files.exists(p)) 
-			crearArchivo(p);
-		
-		try(DirectoryStream<Path> stream= Files.newDirectoryStream(p)){
-			for(Path file: stream) {
-				System.out.printf("[%s] NOMBRE: %s /// ", 
-											Files.isDirectory(file) ? "DIR":"FICH",
-											file.getFileName());
-				if(Files.isRegularFile(file))
-					System.out.printf("TAMAÑO: %d", Files.size(file));
-			}
+	private static void recorrer(Path ruta) throws IOException {
+		try(DirectoryStream<Path> stream= Files.newDirectoryStream(ruta)){
+			for(Path p: stream)
+				if(Files.isDirectory(p))
+					System.out.println("[DIR]: " + p.getFileName());
+				else 
+					System.out.println("[FICHERO]: " + p.getFileName() + "//// Tamaño: " + Files.size(p) + " bytes");
 		}
 	}
 }
