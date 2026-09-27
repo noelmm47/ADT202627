@@ -4,11 +4,23 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Propuesta4 {
 	/* Intenta realizar el ejercicio que borre los ficheros que contiene el directorio y luego borre el directorio.
 	 * Intentarlo también con NIO  */
 
+	public static void main(String[] args) {
+		try {
+			Path p= Paths.get("C:\\Users\\noelg\\Documents\\Borrar"); //TODO probar en clase
+			if(Files.exists(p))
+				borrar(p);
+			else
+				System.err.printf("La ruta %s no existe\n", p);
+		} catch (IOException e) {
+			System.err.println("Error de E/S: " + e.getLocalizedMessage());
+		}
+	}
 	private static void borrar(Path ruta) throws IOException {
 		if(Files.isDirectory(ruta)) 
 			try(DirectoryStream<Path> stream= Files.newDirectoryStream(ruta)){

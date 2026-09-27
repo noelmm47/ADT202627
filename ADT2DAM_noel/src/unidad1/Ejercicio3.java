@@ -7,7 +7,7 @@ public class Ejercicio3 {
 	/* Método que enliste el contenido de un directorio */
 	
 	public static void main(String[] args) {
-		leerDirectorio(".");
+		leerDirectorio("."); //TODO probar en clase
 	}
 	
 	private static void leerDirectorio(String path) {

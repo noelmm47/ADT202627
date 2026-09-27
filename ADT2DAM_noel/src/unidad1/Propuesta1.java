@@ -13,7 +13,7 @@ public class Propuesta1 {
 	 * Si existe, imprimir por pantalla si es directorio o fichero y su tamaño.
 	 */
 	public static void main(String[] args) {
-		Path path = Paths.get("C:/Users/noelg/Documents/Borrar/t.txt"); //TODO Me da problemas la ruta
+		Path path = Paths.get("C:\\Users\\noelg\\Documents\\Borrar\\t.txt"); //TODO Me da problemas la ruta
 		try {
 			comprobar(path);
 			recorrer(path);

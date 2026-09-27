@@ -15,11 +15,10 @@ public class Actividad1 {
 	"DIRECTORIO INEXISTENTE" */
 	
 	public static void main(String[] args) {
-		String path = args[0];
-		
-		if(path == null)
+		if(args.length == 0)
 			exit("HAY QUE INTRODUCIR UN ARGUMENTO....");
 		
+		String path = args[0];
 		File f = new File(path);
 		if(!f.exists() || !f.isDirectory()) 
 			exit("DIRECTORIO INEXISTENTE");
@@ -51,7 +50,7 @@ public class Actividad1 {
 				System.out.println("Se puede escribir: " + Files.isWritable(p));
 				System.out.println("Se puede ejecutar: " + Files.isExecutable(p));
 				System.out.println("Está oculto: " + Files.isHidden(p));
-				System.out.println("Directorio padre: " + p.getParent().relativize(p));
+				System.out.println("Directorio padre: " + p.getParent());
 				
 				//System.out.println(Files.isDirectory(p) ? "Directorio":("Fichero\nBytes: " + att.size());
 				if(Files.isDirectory(p))
@@ -64,6 +63,7 @@ public class Actividad1 {
 				System.out.println("Fecha de creación: " + att.creationTime());
 				System.out.println("Fecha de modificación: " + att.lastModifiedTime());
 				System.out.println("Último acceso: " + att.lastAccessTime());
+				System.out.println();
 			}catch(IOException e) {
 				System.err.println("Error de I/O: " + e.getLocalizedMessage());
 			}

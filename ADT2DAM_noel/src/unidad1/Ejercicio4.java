@@ -20,7 +20,7 @@ private static int jerLv=0; //Jerarchy Level, Nivel de Jerarquía
 	
 	public static void main(String[] args) {
 		//verDirectorio("C:\\");
-		verDirectorio("."); //Directorio actual
+		verDirectorio("."); //Directorio actual TODO probar en clase
 	}
 	
 	private static void verDirectorio(String dir) {

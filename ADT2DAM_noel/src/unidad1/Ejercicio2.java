@@ -11,7 +11,7 @@ public class Ejercicio2 {
 	*/
 	
 	public static void main(String[] args) {
-		crearFichero("C:\\Users\\Tarde\\Downloads\\jaja.txt");
+		crearFichero("C:\\Users\\Tarde\\Downloads\\jaja.txt"); //Funciona
 	}
 	
 	private static void crearFichero(String path) {

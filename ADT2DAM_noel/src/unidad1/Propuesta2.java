@@ -12,7 +12,10 @@ public class Propuesta2 {
 	 * listando su contenido de ser un directorio */
 	
 	public static void main(String[] args) {
-		mirarArchivo(args[0]);
+		if(args.length > 0)
+			mirarArchivo(args[0]);
+		else
+			System.out.println("Introduzca un dato");
 	}
 	
 	private static void mirarArchivo(String ruta) {
@@ -21,7 +24,7 @@ public class Propuesta2 {
 		
 		try {
 			if(Files.exists(p)) {
-				System.out.printf("El archivo existe.");
+				System.out.printf("El archivo %s existe.\n", p.getFileName());
 				if(Files.isRegularFile(p))
 					System.out.printf("Tamaño en bytes: %d\n", Files.size(p));
 			}else
@@ -43,6 +46,7 @@ public class Propuesta2 {
 	}
 	
 	private static void listarDirectorio(Path p) throws IOException {
+		System.out.println("Leyendo directorio:");
 		if(!Files.exists(p)) 
 			crearArchivo(p);
 		
