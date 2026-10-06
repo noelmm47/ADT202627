@@ -1,4 +1,4 @@
-package unidad1.flujosfichero_programa;
+package unidad1.flujosfichero_programa.caracteres;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,9 +15,10 @@ public class Ejercicio1 {
 	 * throws IOException ya que no se incluye el manejador try-catch
 	 */
 	
+	public static String[] rutas= new String[] {"C:/Users/Tarde/Datos/Borrar", "C:/Users/noelg/Borrar"};
 	public static void main(String[] args) {
 		try {
-			leerCaracteres(Paths.get("./LeerFichTexto.txt"));
+			leerCaracteres(Paths.get(rutas[1] + "/LeerFichTexto.txt"));
 		}catch(IOException e) {
 			System.err.println("ERROR: " + e.getLocalizedMessage());
 			e.printStackTrace();
@@ -30,7 +31,7 @@ public class Ejercicio1 {
 			//Podría usar InputStreamReader para especificar la codificación que se quiere leer,
 			//pero como el ejercicio no ha especificado ninguna, lo dejo con el predeterminado
 			//de FileReader
-			while(reader.ready())
+			while(reader.ready()) //while(char x= reader.read() != -1) Syso(x);
 				System.out.print((char)reader.read()); //read lee un caracter
 		}catch(FileNotFoundException e) {
 			System.err.println("No se ha encontrado el fichero: " + e.getLocalizedMessage());

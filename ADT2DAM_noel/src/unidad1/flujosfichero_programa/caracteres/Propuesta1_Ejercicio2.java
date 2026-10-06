@@ -1,4 +1,4 @@
-package unidad1.flujosfichero_programa;
+package unidad1.flujosfichero_programa.caracteres;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,7 +12,7 @@ public class Propuesta1_Ejercicio2 {
 	
 	public static void main(String[] args) {
 		try {
-			leerBloque(Paths.get("./LeerFichTexto.txt"));
+			leerBloque(Paths.get(Ejercicio1.rutas[1]+"/LeerFichTexto.txt"));
 		}catch(IOException e) {
 			System.err.println("ERROR: " + e.getLocalizedMessage());
 			e.printStackTrace();

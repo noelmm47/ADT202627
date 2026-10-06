@@ -1,4 +1,4 @@
-package unidad1.flujosfichero_programa;
+package unidad1.flujosfichero_programa.caracteres;
 
 import java.io.FileWriter;
 import java.io.IOException;

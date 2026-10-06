@@ -1,4 +1,4 @@
-package unidad1.flujosfichero_programa;
+package unidad1.flujosfichero_programa.caracteres;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,14 +6,14 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Ejercicio3 {
-
-	/* Leer un fichero línea a línea con BufferedReader */
-	/* Escribir un fichero línea a línea con BufferedReader */
+public class Propuesta3 {
+	/* Modificar el Ejercicio 3 para usar PrintWriter en vez del Print de System.out */
+	private static PrintWriter printer;
 	
 	public static void main(String[] args) {
 		leerLineas(Paths.get("./LeerFichTexto.txt"));
@@ -26,14 +26,17 @@ public class Ejercicio3 {
 			if(!Files.exists(p))
 				Files.createFile(p);
 			
+			printer = new PrintWriter(p.toFile());
 			String linea;
 			while((linea= reader.readLine()) != null) {
-				System.out.print(linea);
+				printer.println(linea);
 			}
+			printer.close();
 			return true;
 		}catch(IOException e) {
 			System.err.println("ERROR: " + e.getLocalizedMessage());
 			e.printStackTrace();
+			printer.close();
 			return false;
 		}
 	}
@@ -43,6 +46,7 @@ public class Ejercicio3 {
 			if(!Files.exists(p))
 				Files.createFile(p);
 			
+			printer = new PrintWriter(p.toFile());
 			for(int i=0; i < lineas.length; i++) {
 				writer.write(lineas[i]);
 				writer.newLine(); //escribe un salto de linea 
